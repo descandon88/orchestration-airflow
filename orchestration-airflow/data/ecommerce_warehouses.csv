@@ -1,6 +1,0 @@
-warehouse_id,warehouse_name,location,capacity_units,current_occupancy,manager_name
-1,Warehouse 1,New York,64469,45,Martin Davis
-2,Warehouse 2,Los Angeles,76849,91,Robert Smith
-3,Warehouse 3,Chicago,61716,61,Laura Johnson
-4,Warehouse 4,Houston,42502,86,Martin Davis
-5,Warehouse 5,Phoenix,32146,82,Martin Davis
