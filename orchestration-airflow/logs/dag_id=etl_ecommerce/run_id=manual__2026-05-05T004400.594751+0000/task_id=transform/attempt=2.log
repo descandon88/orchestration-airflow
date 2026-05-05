@@ -1,0 +1,30 @@
+[2026-05-05T00:49:04.415+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_ecommerce.transform manual__2026-05-05T00:44:00.594751+00:00 [queued]>
+[2026-05-05T00:49:04.422+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_ecommerce.transform manual__2026-05-05T00:44:00.594751+00:00 [queued]>
+[2026-05-05T00:49:04.423+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 4
+[2026-05-05T00:49:04.435+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): transform> on 2026-05-05 00:44:00.594751+00:00
+[2026-05-05T00:49:04.441+0000] {standard_task_runner.py:60} INFO - Started process 858 to run task
+[2026-05-05T00:49:04.446+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_ecommerce', 'transform', 'manual__2026-05-05T00:44:00.594751+00:00', '--job-id', '33', '--raw', '--subdir', 'DAGS_FOLDER/etl_ecommerce.py', '--cfg-path', '/tmp/tmpt611p47y']
+[2026-05-05T00:49:04.449+0000] {standard_task_runner.py:88} INFO - Job 33: Subtask transform
+[2026-05-05T00:49:04.470+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2026-05-05T00:49:04.543+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_ecommerce.transform manual__2026-05-05T00:44:00.594751+00:00 [running]> on host c1f39e8b7461
+[2026-05-05T00:49:04.618+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='etl_ecommerce' AIRFLOW_CTX_TASK_ID='transform' AIRFLOW_CTX_EXECUTION_DATE='2026-05-05T00:44:00.594751+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-05T00:44:00.594751+00:00'
+[2026-05-05T00:49:05.158+0000] {logging_mixin.py:188} INFO - 🔄 Transforming data...
+[2026-05-05T00:49:05.220+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/etl_ecommerce.py", line 100, in transform
+    'avg_order_value': float(df.groupby('order_id')['total'].sum().mean()),
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/groupby/generic.py", line 1771, in __getitem__
+    return super().__getitem__(key)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/base.py", line 244, in __getitem__
+    raise KeyError(f"Column not found: {key}")
+KeyError: 'Column not found: total'
+[2026-05-05T00:49:05.234+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_ecommerce, task_id=transform, execution_date=20260505T004400, start_date=20260505T004904, end_date=20260505T004905
+[2026-05-05T00:49:05.246+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 33 for task transform ('Column not found: total'; 858)
+[2026-05-05T00:49:05.302+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-05-05T00:49:05.368+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

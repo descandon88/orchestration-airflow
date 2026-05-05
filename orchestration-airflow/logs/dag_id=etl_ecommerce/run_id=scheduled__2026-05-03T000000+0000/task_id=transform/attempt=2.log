@@ -1,0 +1,41 @@
+[2026-05-04T23:56:22.497+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_ecommerce.transform scheduled__2026-05-03T00:00:00+00:00 [queued]>
+[2026-05-04T23:56:22.505+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_ecommerce.transform scheduled__2026-05-03T00:00:00+00:00 [queued]>
+[2026-05-04T23:56:22.506+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 4
+[2026-05-04T23:56:22.521+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): transform> on 2026-05-03 00:00:00+00:00
+[2026-05-04T23:56:22.527+0000] {standard_task_runner.py:60} INFO - Started process 254 to run task
+[2026-05-04T23:56:22.531+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_ecommerce', 'transform', 'scheduled__2026-05-03T00:00:00+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/etl_ecommerce.py', '--cfg-path', '/tmp/tmp05mli100']
+[2026-05-04T23:56:22.534+0000] {standard_task_runner.py:88} INFO - Job 11: Subtask transform
+[2026-05-04T23:56:22.556+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2026-05-04T23:56:22.613+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_ecommerce.transform scheduled__2026-05-03T00:00:00+00:00 [running]> on host c1f39e8b7461
+[2026-05-04T23:56:22.686+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='etl_ecommerce' AIRFLOW_CTX_TASK_ID='transform' AIRFLOW_CTX_EXECUTION_DATE='2026-05-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-03T00:00:00+00:00'
+[2026-05-04T23:56:23.168+0000] {logging_mixin.py:188} INFO - 🔄 Transforming data...
+[2026-05-04T23:56:23.231+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/indexes/base.py", line 3653, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'total'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/etl_ecommerce.py", line 98, in transform
+    'total_revenue': float(df['total'].sum()),
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/indexes/base.py", line 3655, in get_loc
+    raise KeyError(key) from err
+KeyError: 'total'
+[2026-05-04T23:56:23.249+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_ecommerce, task_id=transform, execution_date=20260503T000000, start_date=20260504T235622, end_date=20260504T235623
+[2026-05-04T23:56:23.261+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 11 for task transform ('total'; 254)
+[2026-05-04T23:56:23.306+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-05-04T23:56:23.333+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,10 @@
+{
+  "execution_date": "2026-05-05 00:57:11.117385+00:00",
+  "metrics": {
+    "total_orders": 100,
+    "total_revenue": 896687.2,
+    "avg_order_value": 8966.871999999998,
+    "total_customers": 34
+  },
+  "output_file": "/opt/airflow/output/fact_orders.parquet"
+}

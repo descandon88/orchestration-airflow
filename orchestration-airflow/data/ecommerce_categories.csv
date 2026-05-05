@@ -1,0 +1,11 @@
+category_id,category_name,description,parent_category_id,is_active,display_order
+1,Electronics,Products in electronics,,true,1
+2,Clothing,Products in clothing,1,true,2
+3,Home,Products in home,,true,3
+4,Sports,Products in sports,3,true,4
+5,Books,Products in books,,false,5
+6,Toys,Products in toys,,true,6
+7,Beauty,Products in beauty,,true,7
+8,Food,Products in food,,true,8
+9,Garden,Products in garden,,true,9
+10,Automotive,Products in automotive,7,true,10
